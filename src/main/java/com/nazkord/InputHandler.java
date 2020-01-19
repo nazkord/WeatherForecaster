@@ -20,6 +20,8 @@ public class InputHandler {
         retrieveCityOption();
         retrieveDayInfoOption();
         retrieveUVOption();
+        retrieveAverageParameterOption();
+        retrieveRectangleZoneOption();
     }
 
     //TODO: replace with one method!
@@ -45,11 +47,19 @@ public class InputHandler {
         }
     }
 
-    private static void retrieveAverageOption() {
+    private static void retrieveAverageParameterOption() {
         String[] optionValues = cmd.getOptionValues(CLIOptions.AVERAGE);
         if(optionValues != null) {
             System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.FORECAST));
         }
     }
 
+    private static void retrieveRectangleZoneOption() {
+        String[] optionValues = cmd.getOptionValues(CLIOptions.RECTANGLE);
+        if(optionValues != null) {
+            System.out.println(Arrays.toString(optionValues));
+            String parameter = optionValues[optionValues.length - 1];
+            System.out.println(OkHttpCommunication.getInstance().getRectangleZone(CoordinatesUtil.getCoordinatesFromArguments(optionValues)));
+        }
+    }
 }
