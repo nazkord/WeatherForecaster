@@ -33,8 +33,10 @@ public class CLIOptions {
     }
 
     private static Option createTownOption() {
-        return new Option("c", "CITY", true, "display weather about particular City");
+        return new Option("c", "CITY", true, "display current weather about particular City");
     }
+
+    //TODO: make enum list of parameters
 
     private static Option createDayInfoOption() {
         return Option.builder("p")
@@ -42,7 +44,7 @@ public class CLIOptions {
                 .numberOfArgs(3)
                 .argName("DATE> <CITY> <PARAMETER")
                 .valueSeparator(',')
-                .desc("display parameter about city in particular date \n " +
+                .desc("display parameter about city in particular date (up to 5 days ahead from today)\n " +
                         "Provide arguments with coma (,) \n " +
                         "Provide parameters in \"\" \n")
                 .build();
