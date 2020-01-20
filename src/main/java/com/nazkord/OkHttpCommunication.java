@@ -1,5 +1,6 @@
 package com.nazkord;
 
+import com.nazkord.utils.CoordinatesUtil;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;

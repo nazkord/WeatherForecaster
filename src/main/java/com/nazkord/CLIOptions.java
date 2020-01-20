@@ -7,11 +7,6 @@ public enum CLIOptions {
     OPTIONS();
 
     private Options options;
-    public static final String UV = "uv";
-    public static final String CITY = "c";
-    public static final String PARAMETER = "p";
-    public static final String AVERAGE = "av";
-    public static final String RECTANGLE = "r";
 
     CLIOptions() {
         options = new Options();
@@ -30,13 +25,13 @@ public enum CLIOptions {
     }
 
     private static Option createTownOption() {
-        return new Option(CITY, "City", true, "display current weather about particular City");
+        return new Option(OptionNames.CITY.getName(), "City", true, "display current weather about particular City");
     }
 
     //TODO: make enum list of parameters
 
     private static Option createInfoParameterOption() {
-        return Option.builder(PARAMETER)
+        return Option.builder(OptionNames.PARAMETER.getName())
                 .longOpt("Parameter")
                 .numberOfArgs(3)
                 .argName("DATE> <CITY> <PARAMETER")
@@ -46,7 +41,7 @@ public enum CLIOptions {
     }
 
     private static Option createUVOption() {
-        return Option.builder(UV)
+        return Option.builder(OptionNames.UV.getName())
                 .hasArgs()
                 .argName("Cities")
                 .valueSeparator(',')
@@ -55,7 +50,7 @@ public enum CLIOptions {
     }
 
     private static Option createAverageParameterOption() {
-        return Option.builder(AVERAGE)
+        return Option.builder(OptionNames.AVERAGE.getName())
                 .longOpt("Average")
                 .numberOfArgs(2)
                 .argName("CITY> <PARAMETER")
@@ -65,8 +60,8 @@ public enum CLIOptions {
     }
 
     private static Option createRectangleZoneOption() {
-        return Option.builder(RECTANGLE)
-                .longOpt("Rectangle Zone")
+        return Option.builder(OptionNames.RECTANGLE.getName())
+                .longOpt("Rectangle_Zone")
                 .numberOfArgs(6)
                 .argName("lon-left> <lat-bottom> <lon-right> <lat-top> <zoom> <PARAMETER")
                 .valueSeparator(',')

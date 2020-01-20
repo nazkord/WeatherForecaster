@@ -1,4 +1,4 @@
-package com.nazkord;
+package com.nazkord.utils;
 
 public class CoordinatesUtil {
     public static String convertToString(String[] coordinatesArray) {

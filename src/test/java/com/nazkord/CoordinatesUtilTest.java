@@ -1,5 +1,6 @@
 package com.nazkord;
 
+import com.nazkord.utils.CoordinatesUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

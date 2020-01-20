@@ -1,8 +1,9 @@
 package com.nazkord;
 
+import com.nazkord.fetchers.Fetcher;
+import com.nazkord.fetchers.FetcherFactory;
+import com.nazkord.utils.CLIUtil;
 import org.apache.commons.cli.*;
-
-import java.util.Arrays;
 
 public class InputHandler {
     private static HelpFormatter formatter = new HelpFormatter();
@@ -17,49 +18,8 @@ public class InputHandler {
             formatter.printHelp("cli-weatherApp", CLIOptions.OPTIONS.getOptions());
             System.exit(1);
         }
-        retrieveCityOption();
-        retrieveDayInfoOption();
-        retrieveUVOption();
-        retrieveAverageParameterOption();
-        retrieveRectangleZoneOption();
-    }
 
-    //TODO: replace with one method!
-
-    private static void retrieveCityOption() {
-        String city = cmd.getOptionValue(CLIOptions.CITY);
-        if(city != null) {
-            System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(city, OkHttpCommunication.WEATHER));
-        }
-    }
-
-    private static void retrieveDayInfoOption() {
-        String[] optionValues = cmd.getOptionValues(CLIOptions.PARAMETER);
-        if(optionValues != null) {
-            System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(optionValues[1], OkHttpCommunication.FORECAST));
-        }
-    }
-
-    private static void retrieveUVOption() {
-        String[] optionValues = cmd.getOptionValues(CLIOptions.UV);
-        if(optionValues != null) {
-            System.out.println(Arrays.toString(optionValues));
-        }
-    }
-
-    private static void retrieveAverageParameterOption() {
-        String[] optionValues = cmd.getOptionValues(CLIOptions.AVERAGE);
-        if(optionValues != null) {
-            System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.FORECAST));
-        }
-    }
-
-    private static void retrieveRectangleZoneOption() {
-        String[] optionValues = cmd.getOptionValues(CLIOptions.RECTANGLE);
-        if(optionValues != null) {
-            System.out.println(Arrays.toString(optionValues));
-            String parameter = optionValues[optionValues.length - 1];
-            System.out.println(OkHttpCommunication.getInstance().getRectangleZone(CoordinatesUtil.getCoordinatesFromArguments(optionValues)));
-        }
+        Fetcher fetcher = FetcherFactory.createFetcher(CLIUtil.getAvailableOption(cmd));
+        fetcher.fetch(cmd.getOptionValues(fetcher.getFetcherOptionName()));
     }
 }
