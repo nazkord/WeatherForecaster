@@ -16,6 +16,7 @@ public enum CLIOptions {
         optionGroup.addOption(createUVOption());
         optionGroup.addOption(createAverageParameterOption());
         optionGroup.addOption(createRectangleZoneOption());
+        optionGroup.addOption(createDiagramOption());
         optionGroup.setRequired(true);
         options.addOptionGroup(optionGroup);
     }
@@ -43,7 +44,7 @@ public enum CLIOptions {
     private static Option createUVOption() {
         return Option.builder(OptionNames.UV.getName())
                 .hasArgs()
-                .argName("Cities")
+                .argName("COORDINATES (lat,lon)")
                 .valueSeparator(',')
                 .desc("information about UV radiation in provided cities")
                 .build();
@@ -66,6 +67,16 @@ public enum CLIOptions {
                 .argName("lon-left> <lat-bottom> <lon-right> <lat-top> <zoom> <PARAMETER")
                 .valueSeparator(',')
                 .desc("display city (inside rectangle zone) with biggest hesitation of provided parameter")
+                .build();
+    }
+
+    private static Option createDiagramOption() {
+        return Option.builder(OptionNames.DIAGRAM.getName())
+                .longOpt("Cities_diagram")
+                .hasArgs()
+                .argName("PARAMETER> <CITIES> <START TIME> <END DATETIME")
+                .valueSeparator(',')
+                .desc("display diagram about changing of provided parameter in cities")
                 .build();
     }
 }

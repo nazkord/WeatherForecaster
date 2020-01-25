@@ -6,7 +6,8 @@ public enum OptionNames {
     CITY("c"),
     PARAMETER("p"),
     AVERAGE("av"),
-    RECTANGLE("r");
+    RECTANGLE("r"),
+    DIAGRAM("d");
 
     private String name;
 

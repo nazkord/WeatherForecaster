@@ -21,6 +21,9 @@ public class FetcherFactory {
             case RECTANGLE: {
                 return new RectangleFetcher(OptionNames.RECTANGLE.getName());
             }
+            case DIAGRAM: {
+                return new DiagramFetcher(OptionNames.DIAGRAM.getName());
+            }
             default: {
                 return null;
             }

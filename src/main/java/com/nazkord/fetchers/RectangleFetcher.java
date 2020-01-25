@@ -14,6 +14,6 @@ public class RectangleFetcher extends Fetcher {
     public void fetch(String[] optionValues) {
         System.out.println(Arrays.toString(optionValues));
         String parameter = optionValues[optionValues.length - 1];
-        System.out.println(OkHttpCommunication.getInstance().getRectangleZone(CoordinatesUtil.getCoordinatesFromArguments(optionValues)));
+        System.out.println(OkHttpCommunication.getInstance().getRectangleZone(CoordinatesUtil.getBoxCoordinatesFromArguments(optionValues)));
     }
 }

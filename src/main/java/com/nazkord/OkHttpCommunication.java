@@ -1,12 +1,12 @@
 package com.nazkord;
 
+import com.nazkord.model.Coordinates;
 import com.nazkord.utils.CoordinatesUtil;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 public class OkHttpCommunication {
@@ -27,19 +27,29 @@ public class OkHttpCommunication {
     }
 
     public String getWeatherByCity(String city, String typeOfWeather) {
-        HttpUrl.Builder httpUrl = createHttpUrlBuilderWithCity(typeOfWeather, city);
+        HttpUrl.Builder httpUrl = createHttpUrlBuilder(typeOfWeather);
+        httpUrl.addQueryParameter("q", city);
+
         return getResponse(httpUrl);
     }
 
-    public String getUVFromCities(List<String> cities) {
-        return null;
+    public String getUVForecastFromCoordinates(Coordinates coordinates) {
+        HttpUrl.Builder httpUrlBuilder = createHttpUrlBuilder(UV + FORECAST);
+        UVHttpHelper.addRequiredParams(httpUrlBuilder, coordinates);
+
+        return getResponse(httpUrlBuilder);
+    }
+
+    public String getUVHistoricalFromCoordinates(Coordinates coordinates) {
+        HttpUrl.Builder httpUrlBuilder = createHttpUrlBuilder(UV + "/history");
+        UVHttpHelper.addHistoricalParamsToHttpUrl(httpUrlBuilder, coordinates);
+
+        return getResponse(httpUrlBuilder);
     }
 
     public String getRectangleZone(String[] coordinatesArray) {
         HttpUrl.Builder httpUrlBuilder = createHttpUrlBuilder(RECTANGLE_ZONE);
-
         httpUrlBuilder.addQueryParameter("bbox", CoordinatesUtil.convertToString(coordinatesArray));
-        addKeyApi(httpUrlBuilder);
 
         return getResponse(httpUrlBuilder);
     }
@@ -62,17 +72,7 @@ public class OkHttpCommunication {
 
     private HttpUrl.Builder createHttpUrlBuilder(String endPoint) {
         return Objects.requireNonNull(HttpUrl.parse(URL + endPoint))
-                .newBuilder();
-    }
-
-    private HttpUrl.Builder createHttpUrlBuilderWithCity(String endPoint, String city) {
-        HttpUrl.Builder httpUrl = createHttpUrlBuilder(endPoint);
-        httpUrl.addQueryParameter("q", city);
-        addKeyApi(httpUrl);
-        return httpUrl;
-    }
-
-    private void addKeyApi(HttpUrl.Builder httpUrl) {
-        httpUrl.addQueryParameter("APPID", API_KEY);
+                .newBuilder()
+                .addQueryParameter("APPID", API_KEY);
     }
 }
