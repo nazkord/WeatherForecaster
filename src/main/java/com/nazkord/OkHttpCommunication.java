@@ -73,6 +73,7 @@ public class OkHttpCommunication {
     private HttpUrl.Builder createHttpUrlBuilder(String endPoint) {
         return Objects.requireNonNull(HttpUrl.parse(URL + endPoint))
                 .newBuilder()
-                .addQueryParameter("APPID", API_KEY);
+                .addQueryParameter("APPID", API_KEY)
+                .addQueryParameter("units", "metric");
     }
 }

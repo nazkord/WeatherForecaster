@@ -1,6 +1,8 @@
 package com.nazkord.fetchers;
 
+import com.google.gson.Gson;
 import com.nazkord.OkHttpCommunication;
+import com.nazkord.model.CurrentWeather;
 
 public class CityFetcher extends Fetcher {
 
@@ -10,6 +12,8 @@ public class CityFetcher extends Fetcher {
 
     @Override
     public void fetch(String[] optionValues) {
-        System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.WEATHER));
+        String jsonInString = OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.WEATHER);
+        Gson gson = new Gson();
+        CurrentWeather currentWeather = gson.fromJson(jsonInString, CurrentWeather.class);
     }
 }
