@@ -2,7 +2,10 @@ package com.nazkord.fetchers;
 
 import com.nazkord.OkHttpCommunication;
 import com.nazkord.model.Coordinates;
+import com.nazkord.options.UVOption;
+import com.nazkord.parsers.UVParser;
 import com.nazkord.utils.CoordinatesUtil;
+import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +13,7 @@ import java.util.Map;
 
 public class UVFetcher extends Fetcher {
 
-    private Map<Coordinates, String> uvForecast = new HashMap<>();
-    private Map<Coordinates, String> uvHistory = new HashMap<>();
+    private Map<Coordinates, Pair<Float, Float>> uvValuesMap = new HashMap<>();
 
     public UVFetcher(String fetcherOption) {
         super(fetcherOption);
@@ -20,10 +22,8 @@ public class UVFetcher extends Fetcher {
     @Override
     public void fetch(String[] optionValues) {
         List<Coordinates> coordinatesList = CoordinatesUtil.getListOfCoordinates(optionValues);
-        coordinatesList.forEach(c -> {
-            uvForecast.put(c, getForecast(c));
-            uvHistory.put(c, getHistory(c));
-        });
+        coordinatesList.forEach(c -> uvValuesMap.put(c, UVParser.parse(getForecast(c), getHistory(c))));
+        UVOption.draw(uvValuesMap);
     }
 
     private String getForecast(Coordinates coordinates) {
