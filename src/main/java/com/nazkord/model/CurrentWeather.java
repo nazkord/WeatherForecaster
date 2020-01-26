@@ -11,9 +11,10 @@ public class CurrentWeather {
     private String base;
     private Main main;
     private float visibility;
-    Wind wind;
-    Clouds clouds;
+    private Wind wind;
+    private Clouds clouds;
     private float dt;
+    private String dt_txt;
     private float id;
     private String name;
     private float cod;

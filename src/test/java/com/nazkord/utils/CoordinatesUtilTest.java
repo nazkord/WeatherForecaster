@@ -1,4 +1,4 @@
-package com.nazkord;
+package com.nazkord.utils;
 
 import com.nazkord.model.Coordinates;
 import com.nazkord.utils.CoordinatesUtil;
