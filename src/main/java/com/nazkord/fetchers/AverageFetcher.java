@@ -1,6 +1,11 @@
 package com.nazkord.fetchers;
 
+import com.google.gson.Gson;
 import com.nazkord.OkHttpCommunication;
+import com.nazkord.model.ForecastWeather;
+import com.nazkord.model.Parameter;
+import com.nazkord.options.AverageOption;
+import com.nazkord.parsers.AverageParser;
 
 public class AverageFetcher extends Fetcher {
 
@@ -10,6 +15,11 @@ public class AverageFetcher extends Fetcher {
 
     @Override
     public void fetch(String[] optionValues) {
-        System.out.println(OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.FORECAST));
+        String city = AverageOption.getCity(optionValues);
+        Parameter parameter = AverageOption.getParameter(optionValues);
+        String jsonInString = OkHttpCommunication.getInstance().getWeatherByCity(city, OkHttpCommunication.FORECAST);
+        Gson gson = new Gson();
+        ForecastWeather forecastWeather = gson.fromJson(jsonInString, ForecastWeather.class);
+        System.out.println(AverageParser.parse(forecastWeather, parameter));
     }
 }

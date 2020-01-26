@@ -2,7 +2,7 @@ package com.nazkord.parsers;
 
 import com.nazkord.model.CurrentWeather;
 import com.nazkord.model.ForecastWeather;
-import com.nazkord.model.Parameters;
+import com.nazkord.model.Parameter;
 import com.nazkord.options.ParameterOption;
 import com.nazkord.utils.DateUtil;
 
@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 public class ParameterParser {
 
-    public static String parse(ForecastWeather forecast, String[] args) {
+    public static Float parse(ForecastWeather forecast, String[] args) {
         String date = ParameterOption.getDate(args);
         Integer hour = ParameterOption.getHour(args);
-        String parameter = ParameterOption.getParameter(args);
+        Parameter parameter = ParameterOption.getParameter(args);
         List<CurrentWeather> weathersOfDay = getCurrentWeatherByDate(forecast.getList(), date);
         CurrentWeather currentWeather = getCurrentWeatherByHour(weathersOfDay, hour);
-        return Parameters.getParameter(currentWeather, Parameters.valueOf(parameter));
+        return Parameter.getParameter(currentWeather, parameter);
     }
 
     private static List<CurrentWeather> getCurrentWeatherByDate(List<CurrentWeather> currentWeatherList, String date) {

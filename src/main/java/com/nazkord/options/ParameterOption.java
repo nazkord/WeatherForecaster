@@ -1,5 +1,6 @@
 package com.nazkord.options;
 
+import com.nazkord.model.Parameter;
 import org.apache.commons.cli.Option;
 
 public class ParameterOption {
@@ -12,7 +13,7 @@ public class ParameterOption {
                 .numberOfArgs(4)
                 .argName("DATE> <HOUR> <CITY> <PARAMETER")
                 .valueSeparator(',')
-                .desc("display parameter (one of: TEMP, HUMIDITY, CLOUDINESS, PRESSURE, WIND_SPEED) " +
+                .desc("display parameter " +
                         "about city in particular date (up to 5 days ahead from today)")
                 .build();
     }
@@ -26,8 +27,8 @@ public class ParameterOption {
         return args[2];
     }
 
-    public static String getParameter(String[] args) {
-        return args[3];
+    public static Parameter getParameter(String[] args) {
+        return Parameter.valueOf(args[3]);
     }
 
     public static String getDate(String[] args) {

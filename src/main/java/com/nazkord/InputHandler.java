@@ -17,7 +17,7 @@ public class InputHandler {
             cmd = parser.parse(options, args);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
-            formatter.printHelp("cli-weatherApp", options);
+            formatter.printHelp("cli-weatherApp; parameter is one of the: TEMP, HUMIDITY, CLOUDINESS, PRESSURE, WIND_SPEED)", options);
             System.exit(1);
         }
 
