@@ -19,6 +19,6 @@ public class ParameterFetcher extends Fetcher {
         String jsonInString = OkHttpCommunication.getInstance().getWeatherByCity(city, OkHttpCommunication.FORECAST);
         Gson gson = new Gson();
         ForecastWeather forecastWeather = gson.fromJson(jsonInString, ForecastWeather.class);
-        System.out.println(ParameterParser.parse(forecastWeather, optionValues));
+        ParameterOption.draw(optionValues, ParameterParser.parse(forecastWeather, optionValues));
     }
 }

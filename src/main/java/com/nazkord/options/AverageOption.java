@@ -13,7 +13,7 @@ public class AverageOption {
                 .numberOfArgs(2)
                 .argName("CITY> <PARAMETER")
                 .valueSeparator(',')
-                .desc("display average value of provided parameter for city")
+                .desc("display average value for (5 days ahead from today) of provided parameter for city")
                 .build();
     }
 
@@ -23,5 +23,11 @@ public class AverageOption {
 
     public static Parameter getParameter(String[] args) {
         return Parameter.valueOf(args[1]);
+    }
+
+    public static void draw(String[] args, Float value) {
+        String result = "City: " + getCity(args) + "\n" +
+                Parameter.getParameterDrawer(getParameter(args),value);
+        System.out.println(result);
     }
 }

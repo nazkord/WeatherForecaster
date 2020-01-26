@@ -20,6 +20,6 @@ public class AverageFetcher extends Fetcher {
         String jsonInString = OkHttpCommunication.getInstance().getWeatherByCity(city, OkHttpCommunication.FORECAST);
         Gson gson = new Gson();
         ForecastWeather forecastWeather = gson.fromJson(jsonInString, ForecastWeather.class);
-        System.out.println(AverageParser.parse(forecastWeather, parameter));
+        AverageOption.draw(optionValues, AverageParser.parse(forecastWeather, parameter));
     }
 }

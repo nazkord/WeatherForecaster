@@ -1,5 +1,6 @@
 package com.nazkord.options;
 
+import com.nazkord.model.Parameter;
 import org.apache.commons.cli.Option;
 
 public class RectangleZoneOption {
@@ -14,5 +15,9 @@ public class RectangleZoneOption {
                 .valueSeparator(',')
                 .desc("display city (inside rectangle zone) with biggest hesitation of provided parameter")
                 .build();
+    }
+
+    public static Parameter getParameter(String[] args) {
+        return Parameter.valueOf(args[5]);
     }
 }

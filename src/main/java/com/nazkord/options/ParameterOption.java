@@ -38,4 +38,11 @@ public class ParameterOption {
     public static Integer getHour(String[] args) {
         return Integer.parseInt(args[1]);
     }
+
+    public static void draw(String[] args, Float value) {
+        String result = "City: " + getCity(args) + "\n" +
+                "Date: " + getDate(args) + " " + getHour(args) + ":00" + "\n" +
+                Parameter.getParameterDrawer(getParameter(args), value);
+        System.out.println(result);
+    }
 }

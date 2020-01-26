@@ -1,15 +1,14 @@
 package com.nazkord.model;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 public class Coordinates {
-    private String latitude;
-    private String longitude;
+    private String lat;
+    private String lon;
 
-    public Coordinates(String latitude, String longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Coordinates(String lat, String lon) {
+        this.lat = lat;
+        this.lon = lon;
     }
 }

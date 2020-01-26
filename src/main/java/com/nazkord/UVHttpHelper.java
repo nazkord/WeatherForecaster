@@ -15,8 +15,8 @@ public class UVHttpHelper {
     }
 
     public static void addRequiredParams(HttpUrl.Builder httpUrlBuilder, Coordinates coordinates) {
-        httpUrlBuilder.addQueryParameter("lat", coordinates.getLatitude());
-        httpUrlBuilder.addQueryParameter( "lon", coordinates.getLongitude());
+        httpUrlBuilder.addQueryParameter("lat", coordinates.getLat());
+        httpUrlBuilder.addQueryParameter( "lon", coordinates.getLon());
     }
 
     private static Long getCurrentUnixTime() {

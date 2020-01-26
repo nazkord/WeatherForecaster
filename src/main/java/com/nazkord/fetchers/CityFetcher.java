@@ -3,7 +3,7 @@ package com.nazkord.fetchers;
 import com.google.gson.Gson;
 import com.nazkord.OkHttpCommunication;
 import com.nazkord.model.CurrentWeather;
-import com.nazkord.model.Wind;
+import com.nazkord.options.CityOption;
 
 public class CityFetcher extends Fetcher {
 
@@ -16,5 +16,6 @@ public class CityFetcher extends Fetcher {
         String jsonInString = OkHttpCommunication.getInstance().getWeatherByCity(optionValues[0], OkHttpCommunication.WEATHER);
         Gson gson = new Gson();
         CurrentWeather currentWeather = gson.fromJson(jsonInString, CurrentWeather.class);
+        CityOption.draw(currentWeather);
     }
 }
