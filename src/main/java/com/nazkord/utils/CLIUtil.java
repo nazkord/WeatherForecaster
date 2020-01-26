@@ -1,6 +1,6 @@
 package com.nazkord.utils;
 
-import com.nazkord.OptionNames;
+import com.nazkord.options.OptionNames;
 import org.apache.commons.cli.CommandLine;
 
 import java.util.Arrays;

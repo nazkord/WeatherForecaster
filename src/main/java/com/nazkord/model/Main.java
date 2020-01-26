@@ -9,5 +9,4 @@ public class Main {
     private float humidity;
     private float temp_min;
     private float temp_max;
-
 }

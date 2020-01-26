@@ -1,6 +1,7 @@
 package com.nazkord.fetchers;
 
-import com.nazkord.OptionNames;
+
+import com.nazkord.options.OptionNames;
 
 public class FetcherFactory {
 

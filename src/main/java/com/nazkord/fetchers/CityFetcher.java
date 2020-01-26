@@ -3,6 +3,7 @@ package com.nazkord.fetchers;
 import com.google.gson.Gson;
 import com.nazkord.OkHttpCommunication;
 import com.nazkord.model.CurrentWeather;
+import com.nazkord.model.Wind;
 
 public class CityFetcher extends Fetcher {
 

@@ -1,4 +1,4 @@
-package com.nazkord;
+package com.nazkord.options;
 
 public enum OptionNames {
 
